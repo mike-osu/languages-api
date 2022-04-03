@@ -9,5 +9,3 @@ services:
       MYSQL_DATABASE: dev_db
     ports:
       - "3307:3306"
-    volumes:
-      - $HOME/dev/business-api/mysql.sql:/mysql.sql
