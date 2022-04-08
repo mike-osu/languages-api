@@ -8,7 +8,7 @@ public interface LanguageService {
 
     List<Language> findAll();
 
-    Language save(Language expense);
+    Language save(Language language);
 
     Language findById(Long id);
 
