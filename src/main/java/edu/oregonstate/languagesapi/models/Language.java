@@ -1,33 +1,27 @@
 package edu.oregonstate.languagesapi.models;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name="languages")
-public class Language {
+public class Language extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String language;
+    private String name;
 
     private Integer speakers;
 
-    public Long getId() {
-        return id;
+    @ManyToMany
+    @JoinTable(name = "languages_countries", joinColumns = @JoinColumn(name = "language_id"),
+            inverseJoinColumns = @JoinColumn(name = "country_id"))
+    private Set<Country> countries;
+
+    public String getName() {
+        return name;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(String language) {
-        this.language = language;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Integer getSpeakers() {
@@ -36,5 +30,13 @@ public class Language {
 
     public void setSpeakers(Integer speakers) {
         this.speakers = speakers;
+    }
+
+    public Set<Country> getCountries() {
+        return countries;
+    }
+
+    public void setCountries(Set<Country> countries) {
+        this.countries = countries;
     }
 }
