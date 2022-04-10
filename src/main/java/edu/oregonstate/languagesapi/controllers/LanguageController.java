@@ -24,8 +24,8 @@ public class LanguageController {
 
     @PostMapping("/languages")
     public ResponseEntity<Language> save(@RequestBody Language language) {
-        Language exp = languageService.save(language);
-        return new ResponseEntity<>(exp, HttpStatus.OK);
+        Language lang = languageService.save(language);
+        return new ResponseEntity<>(lang, HttpStatus.OK);
     }
 
     @GetMapping("/languages/{id}")

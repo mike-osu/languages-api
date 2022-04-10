@@ -14,7 +14,7 @@ public class City extends BaseEntity {
     private Boolean isCapital;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "country_id", nullable = false)
+    @JoinColumn(name = "country_id")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Country country;
 

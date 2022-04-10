@@ -24,8 +24,8 @@ public class CountryController {
 
     @PostMapping("/countries")
     public ResponseEntity<Country> save(@RequestBody Country country) {
-        Country exp = countryService.save(country);
-        return new ResponseEntity<>(exp, HttpStatus.OK);
+        Country ctry = countryService.save(country);
+        return new ResponseEntity<>(ctry, HttpStatus.OK);
     }
 
     @GetMapping("/countries/{id}")
