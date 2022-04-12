@@ -12,5 +12,7 @@ public interface LanguageService {
 
     Language findById(Long id);
 
-    void delete(Long id);    
+    void delete(Long id);
+
+    List<Language> findByCountry(Long countryId);
 }

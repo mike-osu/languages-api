@@ -5,7 +5,9 @@ import edu.oregonstate.languagesapi.repositories.LanguageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class LanguageServiceImpl implements LanguageService {
@@ -36,5 +38,17 @@ public class LanguageServiceImpl implements LanguageService {
     public void delete(Long id) {
         Language language = findById(id);
         languageRepository.delete(language);
-    }    
+    }
+
+    @Override
+    public List<Language> findByCountry(Long countryId) {
+        List<Language> languages = new ArrayList<>();
+        languageRepository.findAll().forEach(language -> {
+            if (language.getCountries().stream().anyMatch(o -> Objects.equals(o.getId(), countryId))) {
+                languages.add(language);
+            }
+        });
+
+        return languages;
+    }
 }

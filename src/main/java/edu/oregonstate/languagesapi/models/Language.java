@@ -17,6 +17,10 @@ public class Language extends BaseEntity {
             inverseJoinColumns = @JoinColumn(name = "country_id"))
     private Set<Country> countries = new HashSet<>();
 
+    public void removeCountry(Country country) {
+        this.countries.remove(country);
+    }
+
     public String getName() {
         return name;
     }

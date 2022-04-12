@@ -12,7 +12,7 @@ public class Country extends BaseEntity {
 
     private String continent;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "country")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "country", orphanRemoval = true)
     private Set<City> cities = new HashSet<>();
 
     public String getName() {
