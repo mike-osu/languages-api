@@ -1,7 +1,5 @@
 package edu.oregonstate.languagesapi.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,8 +12,10 @@ public class Language extends BaseEntity {
 
     private Integer speakers;
 
-//    @ManyToMany(mappedBy = "languages")
-//    private Set<Country> countries = new HashSet<>();
+    @ManyToMany
+    @JoinTable(name = "languages_countries", joinColumns = @JoinColumn(name = "language_id"),
+            inverseJoinColumns = @JoinColumn(name = "country_id"))
+    private Set<Country> countries = new HashSet<>();
 
     public String getName() {
         return name;
@@ -33,11 +33,11 @@ public class Language extends BaseEntity {
         this.speakers = speakers;
     }
 
-//    public Set<Country> getCountries() {
-//        return countries;
-//    }
-//
-//    public void setCountries(Set<Country> countries) {
-//        this.countries = countries;
-//    }
+    public Set<Country> getCountries() {
+        return countries;
+    }
+
+    public void setCountries(Set<Country> countries) {
+        this.countries = countries;
+    }
 }
