@@ -17,10 +17,7 @@ public class DataLoader implements CommandLineRunner {
     private final LanguageRepository languageRepository;
     private final CountryRepository countryRepository;
     private final CityRepository cityRepository;
-
-    private Language english;
-    private Language french;
-
+    
     private Country usa;
     private Country france;
     private Country canada;
@@ -42,41 +39,41 @@ public class DataLoader implements CommandLineRunner {
         loadCities();
     }
 
-    private void loadLanguages() {
-        english = new Language();
-        english.setName("English");
-        english.setSpeakers(1132000000);
-        english.getCountries().add(usa);
-        english.getCountries().add(canada);
-        languageRepository.save(english);
-
-        french = new Language();
-        french.setName("French");
-        french.setSpeakers(280000000);
-        french.getCountries().add(france);
-        french.getCountries().add(canada);
-        languageRepository.save(french);
-    }
-
     private void loadCountries() {
         usa = new Country();
         usa.setName("United States");
         usa.setContinent("North America");
-//        usa.getLanguages().add(english);
         countryRepository.save(usa);
 
         france = new Country();
         france.setName("France");
         france.setContinent("Europe");
-//        france.getLanguages().add(french);
         countryRepository.save(france);
 
         canada = new Country();
         canada.setName("Canada");
         canada.setContinent("North America");
-//        canada.getLanguages().add(french);
-//        canada.getLanguages().add(english);
         countryRepository.save(canada);
+
+        System.out.println("Country data Loaded = " + countryRepository.count());
+    }
+
+    private void loadLanguages() {
+        Language english = new Language();
+        english.setName("English");
+        english.setSpeakers(1452);
+        english.getCountries().add(usa);
+        english.getCountries().add(canada);
+        languageRepository.save(english);
+
+        Language french = new Language();
+        french.setName("French");
+        french.setSpeakers(274);
+        french.getCountries().add(france);
+        french.getCountries().add(canada);
+        languageRepository.save(french);
+
+        System.out.println("Language data Loaded = " + languageRepository.count());
     }
 
     private void loadCities() {
@@ -103,5 +100,7 @@ public class DataLoader implements CommandLineRunner {
         ottawa.setCapital(true);
         ottawa.setCountry(canada);
         cityRepository.save(ottawa);
+
+        System.out.println("City data Loaded = " + cityRepository.count());
     }
 }
