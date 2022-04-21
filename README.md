@@ -17,7 +17,11 @@ Sources:
 - [MySQL 8.0](https://www.mysql.com/)
 - [Docker](https://www.docker.com/)
 - [IntelliJ IDEA Ultimate](https://www.jetbrains.com/idea/business/)
+- [Amazon Cognito](https://aws.amazon.com/cognito/)
 
+---
+### Progress
+- 4/18 - [Secure REST API with Amazon Cognito](https://hackmd.io/@mikeacosta/rywc6vsNq)
 ---
 
 ```
