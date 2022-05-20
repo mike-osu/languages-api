@@ -4,11 +4,6 @@
 
 ---
 ## RESTful Web Service - Official Languages by Country
-Sources:
-- [List of official languages by country and territory](https://en.wikipedia.org/wiki/List_of_official_languages_by_country_and_territory)
-- [List of languages by total number of speakers](https://en.wikipedia.org/wiki/List_of_languages_by_total_number_of_speakers)
-
----
 
 ### Technologies:
 - [Java 8](https://www.oracle.com/java/technologies/java8.html)
@@ -18,6 +13,8 @@ Sources:
 - [Docker](https://www.docker.com/)
 - [IntelliJ IDEA Ultimate](https://www.jetbrains.com/idea/business/)
 - [Amazon Cognito](https://aws.amazon.com/cognito/)
+- [Swagger UI](https://swagger.io/tools/swagger-ui/)
+- [React](https://reactjs.org/)
 
 ---
 ### Progress
@@ -100,5 +97,13 @@ Sources:
     <br />
     <img src="languages_schema.png" />
 </p>
+
+---
+Sources:
+- [List of official languages by country and territory](https://en.wikipedia.org/wiki/List_of_official_languages_by_country_and_territory)
+- [List of languages by total number of speakers](https://en.wikipedia.org/wiki/List_of_languages_by_total_number_of_speakers)
+- [Secure Spring Boot App with JWTs and OAuth 2.0 provided by AWS Cognito](https://kevcodez.de/posts/2020-03-26-secure-spring-boot-app-with-oauth2-aws-cognito/)
+- [Configure JWT with Spring Boot and Swagger UI](https://www.javaguides.net/2021/06/configure-jwt-with-spring-boot-and-swagger.html)
+- [How to consume a RESTful API in React](https://pusher.com/tutorials/consume-restful-api-react/)
 
 ---
