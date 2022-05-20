@@ -1,32 +1,26 @@
     // src/App.js
 
     import React, {Component} from 'react';
+    import Languages from './components/languages'
 
     class App extends Component {
 
       state = {
-        contacts: []
+        languages: []
       }
 
       componentDidMount() {
-        fetch('http://jsonplaceholder.typicode.com/users')
+        fetch('http://demo5643411.mockable.io/languages')
         .then(res => res.json())
         .then((data) => {
-          this.setState({ contacts: data })
+          this.setState({ languages: data })
         })
         .catch(console.log)
       }      
 
       render () {
         return (
-          // JSX to render goes here...
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Mike Acosta</h5>
-              <h6 class="card-subtitle mb-2 text-muted">acostmic@oregonstate.edu</h6>
-              <p class="card-text">Go Beavs!</p>
-            </div>
-          </div>          
+          <Languages languages={this.state.languages} />   
         );
       }
     }
