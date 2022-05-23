@@ -1,26 +1,14 @@
     // src/App.js
 
     import React, {Component} from 'react';
-    import Languages from './components/languages'
+    import LanguagesApp from './components/LanguagesApp.jsx'
 
     class App extends Component {
-
-      state = {
-        languages: []
-      }
-
-      componentDidMount() {
-        fetch('http://demo5643411.mockable.io/languages')
-        .then(res => res.json())
-        .then((data) => {
-          this.setState({ languages: data })
-        })
-        .catch(console.log)
-      }      
-
       render () {
         return (
-          <Languages languages={this.state.languages} />   
+          <div className="App">
+            <LanguagesApp />
+          </div>
         );
       }
     }
