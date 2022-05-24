@@ -2,6 +2,7 @@ import React, {Component, useState} from 'react'
 import {BrowserRouter, Routes, Route, Link} from 'react-router-dom'
 import withNavigation from './WithNavigation';
 import Languages from './languages'
+import AuthenticationService from './AuthenticationService.js';
 
 class WelcomeComponent extends Component {
     render() {
@@ -31,9 +32,13 @@ class LoginComponent extends Component {
         )
     }
 
-    loginClicked() {
+    async loginClicked() {
+        sessionStorage.clear()
         if (this.state.username !== '' && this.state.password !== '') {
-            this.props.navigate('/welcome')
+            await AuthenticationService.login(this.state.username, this.state.password).then(() => {
+                if (sessionStorage.getItem('token') !== null)
+                    this.props.navigate('/welcome')
+            })
         }
     }
 
@@ -48,8 +53,6 @@ class LoginComponent extends Component {
     }
 }
 
-const token = ''
-
 class LanguagesComponent extends Component {
     state = {
         languages: []
@@ -60,7 +63,7 @@ class LanguagesComponent extends Component {
             method: 'GET',
             mode: 'cors',
             headers: {
-                Authorization: "Bearer " + token
+                Authorization: "Bearer " + sessionStorage.getItem('token')
             }
         })
         .then(res => res.json())
