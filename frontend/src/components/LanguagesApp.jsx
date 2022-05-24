@@ -3,10 +3,12 @@ import {BrowserRouter, Routes, Route, Link} from 'react-router-dom'
 import withNavigation from './WithNavigation';
 import Languages from './languages'
 import AuthenticationService from './AuthenticationService.js';
+import HeaderComponent from './Header'
+import './style.css'
 
 class WelcomeComponent extends Component {
     render() {
-        return <div>
+        return <div class="center">
                 Welcome!<br />
                 Go to <Link to="/languages">Languages</Link>
             </div>
@@ -22,6 +24,8 @@ class LoginComponent extends Component {
         }
         this.handleChange = this.handleChange.bind(this)
         this.loginClicked = this.loginClicked.bind(this)
+
+        sessionStorage.clear()
     }
 
     handleChange(event) {
@@ -33,7 +37,6 @@ class LoginComponent extends Component {
     }
 
     async loginClicked() {
-        sessionStorage.clear()
         if (this.state.username !== '' && this.state.password !== '') {
             await AuthenticationService.login(this.state.username, this.state.password).then(() => {
                 if (sessionStorage.getItem('token') !== null)
@@ -44,10 +47,20 @@ class LoginComponent extends Component {
 
     render () {
         return (
-            <div>
-                Username: <input type="text" name="username" value={this.state.username} onChange={this.handleChange} /><br />
-                Password: <input type="password" name="password" value={this.state.password} onChange={this.handleChange} /><br />
-                <button onClick={this.loginClicked}>Login</button>
+            <div class="center">
+                <table cellPadding="2">
+                    <tr>
+                        <td><b>Username:</b></td>
+                        <td><input type="text" name="username" value={this.state.username} onChange={this.handleChange} /></td>
+                    </tr>
+                    <tr>
+                        <td><b>Password:</b></td>
+                        <td><input type="password" name="password" value={this.state.password} onChange={this.handleChange} /></td>
+                    </tr>  
+                    <tr>
+                        <td align='center' colSpan="2"><button onClick={this.loginClicked}>Login</button></td>
+                    </tr>                  
+                </table>
             </div>
         )
     }
@@ -89,6 +102,7 @@ class LanguagesApp extends Component {
         return (
             <div className="LanguagesApp">
                 <BrowserRouter>
+                    <HeaderComponent />
                     <Routes>
                         <Route path="/" element={<LoginComponentWithNavigation />} />
                         <Route path="/login" element={<LoginComponentWithNavigation />} />
