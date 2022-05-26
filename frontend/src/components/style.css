@@ -10,3 +10,12 @@ button {
     margin: auto;
     width: fit-content;
 }
+
+.go-beavs {
+    background-color: #D73F09;
+    color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+    font-size: 28px;
+}

@@ -8,8 +8,9 @@ import './style.css'
 
 class WelcomeComponent extends Component {
     render() {
-        return <div class="center">
-                Welcome!<br />
+        return <div className="App">
+                <div className="go-beavs">Welcome</div>
+                <br />
                 Go to <Link to="/languages">Languages</Link>
             </div>
     }
@@ -47,19 +48,22 @@ class LoginComponent extends Component {
 
     render () {
         return (
-            <div class="center">
+            <div className="center">
+                <br />
                 <table cellPadding="2">
-                    <tr>
-                        <td><b>Username:</b></td>
-                        <td><input type="text" name="username" value={this.state.username} onChange={this.handleChange} /></td>
-                    </tr>
-                    <tr>
-                        <td><b>Password:</b></td>
-                        <td><input type="password" name="password" value={this.state.password} onChange={this.handleChange} /></td>
-                    </tr>  
-                    <tr>
-                        <td align='center' colSpan="2"><button onClick={this.loginClicked}>Login</button></td>
-                    </tr>                  
+                    <tbody>
+                        <tr>
+                            <td><b>Username:</b></td>
+                            <td><input type="text" name="username" value={this.state.username} onChange={this.handleChange} /></td>
+                        </tr>
+                        <tr>
+                            <td><b>Password:</b></td>
+                            <td><input type="password" name="password" value={this.state.password} onChange={this.handleChange} /></td>
+                        </tr>  
+                        <tr>
+                            <td align='center' colSpan="2"><button onClick={this.loginClicked}>Login</button></td>
+                        </tr>    
+                    </tbody>              
                 </table>
             </div>
         )
@@ -88,7 +92,7 @@ class LanguagesComponent extends Component {
 
     render () {
         return (
-            <div className="App">
+            <div>
                 <Languages languages={this.state.languages} />
             </div>
         );

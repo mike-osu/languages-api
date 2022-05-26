@@ -7,12 +7,12 @@ class HeaderComponent extends Component {
             <header>
                 <nav className="navbar navbar-expand-md navbar-dark bg-dark">
                     <div><a href="https://oregonstate.edu/" className="navbar-brand" target="_blank">Oregon State</a></div>
-                    <ul class="navbar-nav">
+                    <ul className="navbar-nav">
                         <li>
                             <Link className="nav-link" to="/languages">Languages</Link>
                         </li>
                     </ul>
-                    <ul class="navbar-nav navbar-collapse justify-content-end">
+                    <ul className="navbar-nav navbar-collapse justify-content-end">
                         <li>
                             <Link className="nav-link" to="/">Login</Link>
                         </li>
