@@ -4,10 +4,12 @@ import com.amazonaws.services.cognitoidp.AWSCognitoIdentityProvider;
 import com.amazonaws.services.cognitoidp.model.AdminInitiateAuthRequest;
 import com.amazonaws.services.cognitoidp.model.AdminInitiateAuthResult;
 import com.amazonaws.services.cognitoidp.model.AuthFlowType;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import edu.oregonstate.languagesapi.models.LoginRequest;
 import edu.oregonstate.languagesapi.models.LoginResponse;
+import edu.oregonstate.languagesapi.models.Secret;
+import edu.oregonstate.languagesapi.security.SecretManager;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -20,21 +22,18 @@ public class LoginController {
     @Autowired
     private AWSCognitoIdentityProvider cognitoClient;
 
-    @Value(value = "${aws.cognito.userPoolId}")
-    private String userPoolId;
-    @Value(value = "${aws.cognito.clientId}")
-    private String clientId;
-
     @PostMapping("/login")
     public @ResponseBody
-    LoginResponse login(@RequestBody LoginRequest loginRequest) {
+    LoginResponse login(@RequestBody LoginRequest loginRequest) throws JsonProcessingException {
 
         LoginResponse loginResponse = new LoginResponse();
 
         try {
+            Secret secret = SecretManager.getSecret();
+
             AdminInitiateAuthRequest request = new AdminInitiateAuthRequest()
-                    .withUserPoolId(userPoolId)
-                    .withClientId(clientId)
+                    .withUserPoolId(secret.getUserPoolId())
+                    .withClientId(secret.getAppClientId())
                     .withAuthFlow(AuthFlowType.ADMIN_NO_SRP_AUTH)
                     .withAuthParameters(getAuthParams(loginRequest));
 
