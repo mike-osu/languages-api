@@ -11,7 +11,7 @@ services:
       - "3307:3306"
 
   app:
-    image: osu-languages-api
+    image: mikeacosta/osu-languages-api
     restart: on-failure
     depends_on:
       - database

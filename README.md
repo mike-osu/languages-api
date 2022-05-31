@@ -3,8 +3,74 @@
 [![CircleCI](https://circleci.com/gh/mike-osu/languages-api/tree/main.svg?style=svg)](https://circleci.com/gh/mike-osu/languages-api/tree/main)
 
 ---
-## RESTful Web Service - Official Languages by Country
+## Background
 
+Official Languages by Country<br />
+Java/Spring Boot and React Full Stack Web App
+
+---
+## How to Run
+
+### Local machine
+#### Requirements
+- Java 8
+- MySQL
+- Amazon Cognito user pool & app client
+   - User pool ID & App client ID configured in Amazon Secrets Manager
+   - can alternatively configure in `application.properties` and modify code accordingly
+- locally configured [AWS credentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html) that include Cognito privileges
+
+1. Clone this repo
+```
+$ git clone ...
+$ cd languages-api
+```
+
+2. Start mySQL
+```
+$ docker run -d --name db-container \
+	-e MYSQL_ROOT_PASSWORD=Abc12345 \
+	-e MYSQL_DATABASE=dev_db \
+	-p 3307:3306 mysql
+```
+(if preferred, can run local or remote instance (e.g. RDS) instead of Docker)
+
+3. Open IDE and run project<br />
+http://localhost:8080<br /><br />or create and run .jar file 
+```
+$ mvn package
+$ java -jar target/languages-api.jar
+```
+
+4. Run React front-end
+```
+$ cd frontend
+$ npm start
+```
+
+5. Navigate to http://localhost:3000
+
+### Docker
+1. Project can be run in Docker containers<br  />Update `docker-compose.yml` file with AWS credentials environment variables
+```
+    environment:
+      - AWS_ACCESS_KEY_ID=xxxxxxx
+      - AWS_SECRET_ACCESS_KEY=xxxxxxxx
+```
+
+2. Run command
+```
+$ docker-compose up -d
+```
+
+3. Run React front-end
+
+4. To stop project
+```
+$ docker-compose down
+```
+
+---
 ### Technologies:
 - [Java 8](https://www.oracle.com/java/technologies/java8.html)
 - [Spring Boot 2.6](https://spring.io/projects/spring-boot)
@@ -13,14 +79,21 @@
 - [Docker](https://www.docker.com/)
 - [IntelliJ IDEA Ultimate](https://www.jetbrains.com/idea/business/)
 - [Amazon Cognito](https://aws.amazon.com/cognito/)
+- [Amazon Secrets Manager](https://aws.amazon.com/secrets-manager/)
 - [Swagger UI](https://swagger.io/tools/swagger-ui/)
 - [React](https://reactjs.org/)
 
 ---
 ### Progress
 - 4/18 - [Secure REST API with Amazon Cognito](https://hackmd.io/@mikeacosta/rywc6vsNq)
+- 5/31 - [Languages API image in Docker Hub](https://hub.docker.com/r/mikeacosta/osu-languages-api)
 ---
+<p align="center">
+    <br />
+    <img src="screenshot.png" />
+</p>
 
+---
 ```
 [
 	{
